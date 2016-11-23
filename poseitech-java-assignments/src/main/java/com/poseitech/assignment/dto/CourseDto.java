@@ -5,12 +5,10 @@ import java.util.Date;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.poseitech.assignment.common.ObjectConverter;
-import com.poseitech.assignment.entity.Student;
 import com.poseitech.assignment.entity.StudentCourse;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class StudentDto implements Serializable, ObjectConverter<Student> {
+public class CourseDto implements Serializable {
 
 	private static final long serialVersionUID = 3209888691671533902L;
 
@@ -18,9 +16,7 @@ public class StudentDto implements Serializable, ObjectConverter<Student> {
 
 	private String name;
 
-	private Date birthday;
-
-	private Date registerDate;
+	private Date createDate;
 
 	private String remark;
 
@@ -42,20 +38,12 @@ public class StudentDto implements Serializable, ObjectConverter<Student> {
 		this.name = name;
 	}
 
-	public Date getBirthday() {
-		return birthday;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-
-	public Date getRegisterDate() {
-		return registerDate;
-	}
-
-	public void setRegisterDate(Date registerDate) {
-		this.registerDate = registerDate;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	public String getRemark() {
@@ -75,20 +63,9 @@ public class StudentDto implements Serializable, ObjectConverter<Student> {
 	}
 
 	@Override
-	public Student convert(boolean relation) {
-		Student student = new Student();
-		student.setId(id);
-		student.setName(name);
-		student.setBirthday(birthday);
-		student.setRegisterDate(registerDate);
-		student.setRemark(remark);
-		student.setStudentCourses(studentCourses);
-		return student;
+	public String toString() {
+		return "CourseDto [id=" + id + ", name=" + name + ", createDate=" + createDate + ", remark=" + remark
+				+ ", studentCourses=" + studentCourses + "]";
 	}
 
-	@Override
-	public String toString() {
-		return "StudentDto [id=" + id + ", name=" + name + ", birthday=" + birthday + ", registerDate=" + registerDate
-				+ ", remark=" + remark + ", studentCourses=" + studentCourses + "]";
-	}
 }
